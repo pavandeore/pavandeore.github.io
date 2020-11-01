@@ -36,6 +36,7 @@ a{
     transform: translate(-50%, -50%);
 }
 .welcome{
+    text-align: center;
     font-size: 10vw;
     font-family: 'Wallpoet', cursive;
     color: var(--white);
