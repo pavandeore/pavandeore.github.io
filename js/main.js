@@ -1,79 +1,149 @@
-let main = document.querySelector('.main');
-let mainDiv = document.querySelector('.main-div');
-let secondDiv = document.querySelector('.second-div');
-let thirdDiv = document.querySelector('.third-div');
-let socialDiv = document.querySelector('.social-div');
-let skillDiv = document.querySelector('.skill-div');
-let projectDiv = document.querySelector('.project-div');
+;(function () {
+	
+	'use strict';
 
-let social = document.querySelector('.social');
-let skill = document.querySelector('.skill');
-let project = document.querySelector('.project');
+	var isMobile = {
+		Android: function() {
+			return navigator.userAgent.match(/Android/i);
+		},
+			BlackBerry: function() {
+			return navigator.userAgent.match(/BlackBerry/i);
+		},
+			iOS: function() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+			Opera: function() {
+			return navigator.userAgent.match(/Opera Mini/i);
+		},
+			Windows: function() {
+			return navigator.userAgent.match(/IEMobile/i);
+		},
+			any: function() {
+			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		}
+	};
 
-let homeBtn = document.querySelector('.home-btn');
+	
+	var fullHeight = function() {
 
-import ProjectData from './projectData.js'
+		if ( !isMobile.any() ) {
+			$('.js-fullheight').css('height', $(window).height());
+			$(window).resize(function(){
+				$('.js-fullheight').css('height', $(window).height());
+			});
+		}
+	};
 
-// initially on page load all secondly
-// things should not be visible
+	// Parallax
+	var parallax = function() {
+		$(window).stellar();
+	};
 
-secondDiv.style.display="none"
-thirdDiv.style.display="none"
-socialDiv.style.display="none"
-skillDiv.style.display="none"
-projectDiv.style.display="none"
-homeBtn.style.display="none"
+	var contentWayPoint = function() {
+		var i = 0;
+		$('.animate-box').waypoint( function( direction ) {
 
-let h2 = document.createElement('h2');
-h2.innerText = "Welcome";
-h2.setAttribute('class','welcome')
-main.appendChild(h2);
+			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
+				
+				i++;
 
-setTimeout(()=>{
-    mainDiv.style.background = "url('./images/back.jpg')"
-    main.removeChild(h2)
-    main.appendChild(secondDiv)
-    secondDiv.style.display = "block"
-    secondDiv.append(thirdDiv);
-    thirdDiv.style.display = "flex"
-},4000)
+				$(this.element).addClass('item-animate');
+				setTimeout(function(){
 
-social.addEventListener("click",()=>{
-    socialDiv.style.display = "block"
-    socialDiv.setAttribute('class',' social-from-right')
-})
+					$('body .animate-box.item-animate').each(function(k){
+						var el = $(this);
+						setTimeout( function () {
+							var effect = el.data('animate-effect');
+							if ( effect === 'fadeIn') {
+								el.addClass('fadeIn animated-fast');
+							} else if ( effect === 'fadeInLeft') {
+								el.addClass('fadeInLeft animated-fast');
+							} else if ( effect === 'fadeInRight') {
+								el.addClass('fadeInRight animated-fast');
+							} else {
+								el.addClass('fadeInUp animated-fast');
+							}
 
-setTimeout(()=>{
-    main.appendChild(skillDiv);
-    skillDiv.style.display = "flex"
-    skillDiv.setAttribute('class','skill-from-bottom')
-},6000)
+							el.removeClass('item-animate');
+						},  k * 100, 'easeInOutExpo' );
+					});
+					
+				}, 50);
+				
+			}
 
-project.addEventListener("click",()=>{
-    main.removeChild(secondDiv)
-    mainDiv.removeChild(main)
-    document.body.removeChild(socialDiv)
-    mainDiv.appendChild(homeBtn)
-    homeBtn.style.display = "block"
-    mainDiv.appendChild(projectDiv)
-    projectDiv.style.display = "flex"
-    ProjectData.forEach((data)=>{
-        let div = document.createElement('div');
-        div.innerHTML = 
-        `
-        <div class="innerContact-div">
-        <h2>${data.title}</h2>
-        <img src="${data.imageUrl}" class="project-img" />
-        <div class="desc">
-            ${data.desc}
-            <a class="visit" href="${data.visitUrl}" target="_blank">Visit<i class="fa fa-mail-forward"></i></a>
-        </div>
-        </div>
-        `;
-        projectDiv.appendChild(div);
-    })
-})
+		} , { offset: '85%' } );
+	};
 
-homeBtn.addEventListener("click",()=>{
-    window.location.reload();
-})
+
+
+	var goToTop = function() {
+
+		$('.js-gotop').on('click', function(event){
+			
+			event.preventDefault();
+
+			$('html, body').animate({
+				scrollTop: $('html').offset().top
+			}, 500, 'easeInOutExpo');
+			
+			return false;
+		});
+
+		$(window).scroll(function(){
+
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$('.js-top').addClass('active');
+			} else {
+				$('.js-top').removeClass('active');
+			}
+
+		});
+	
+	};
+
+	var pieChart = function() {
+		$('.chart').easyPieChart({
+			scaleColor: false,
+			lineWidth: 4,
+			lineCap: 'butt',
+			barColor: '#FF9000',
+			trackColor:	"#f5f5f5",
+			size: 160,
+			animate: 1000
+		});
+	};
+
+	var skillsWayPoint = function() {
+		if ($('#fh5co-skills').length > 0 ) {
+			$('#fh5co-skills').waypoint( function( direction ) {
+										
+				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
+					setTimeout( pieChart , 400);					
+					$(this.element).addClass('animated');
+				}
+			} , { offset: '90%' } );
+		}
+
+	};
+
+
+	// Loading page
+	var loaderPage = function() {
+		$(".fh5co-loader").fadeOut("slow");
+	};
+
+	
+	$(function(){
+		contentWayPoint();
+		goToTop();
+		loaderPage();
+		fullHeight();
+		parallax();
+		// pieChart();
+		skillsWayPoint();
+	});
+
+
+}());
