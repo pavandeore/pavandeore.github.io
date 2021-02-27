@@ -1,0 +1,249 @@
+// Modal
+// Extended from Bootstrap
+
+.modal {
+  .modal-dialog{
+    &.modal-full-width {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0!important;
+      left: 0!important;
+      right: 0!important;
+    }
+  }
+  .modal-content {
+    border: 0;
+    border-radius: 3px;
+
+  }
+  &.fade {
+    //modal Positioning
+    &.modal-top-left{
+      .modal-dialog {
+        width: 100%;
+        position: absolute;
+        top: 0;
+      }
+
+      // Setup Position
+      @include media-breakpoint-up(sm) {
+        .modal-dialog {
+          left: $modal-dialog-margin-y-sm-up;
+          margin: $modal-dialog-margin-y-sm-up auto;
+        }
+      }
+      @include media-breakpoint-down(sm) {
+        .modal-dialog {
+          width: calc(100% - (#{$modal-dialog-margin}*2)) ;
+        }
+      }
+    }
+    &.modal-top-right{
+      .modal-dialog {
+        width: 100%;
+        position: absolute;
+        top: 0;
+      }
+      // Setup Position
+      @include media-breakpoint-up(sm) {
+        .modal-dialog {
+          right: $modal-dialog-margin-y-sm-up;
+          margin: $modal-dialog-margin-y-sm-up auto;
+
+        }
+      }
+      @include media-breakpoint-down(sm) {
+        .modal-dialog {
+          width: calc(100% - (#{$modal-dialog-margin}*2)) ;
+        }
+      }
+    }
+    &.modal-bottom-right{
+      .modal-dialog {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+      }
+
+      // Setup Position
+      @include media-breakpoint-up(sm) {
+        .modal-dialog {
+          right: $modal-dialog-margin-y-sm-up;
+          margin: $modal-dialog-margin-y-sm-up auto;
+        }
+      }
+      @include media-breakpoint-down(sm) {
+        .modal-dialog {
+          width: calc(100% - (#{$modal-dialog-margin}*2)) ;
+        }
+      }
+    }
+    &.modal-bottom-left{
+
+      .modal-dialog {
+
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+      }
+
+      // Setup Position
+      @include media-breakpoint-up(sm) {
+        .modal-dialog {
+          left: $modal-dialog-margin-y-sm-up;
+          margin: $modal-dialog-margin-y-sm-up auto;
+
+        }
+      }
+      @include media-breakpoint-down(sm) {
+        .modal-dialog {
+          width: calc(100% - (#{$modal-dialog-margin}*2)) ;
+        }
+      }
+    }
+    &.modal-bottom-center {
+
+      .modal-dialog {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      }
+
+      // Setup Position
+      @include media-breakpoint-up(sm) {
+        .modal-dialog {
+          margin: $modal-dialog-margin-y-sm-up auto;
+        }
+      }
+      @include media-breakpoint-down(sm) {
+        .modal-dialog {
+          width: calc(100% - (#{$modal-dialog-margin}*2)) ;
+        }
+      }
+
+    }
+  }
+  .close {
+    position: absolute;
+    z-index: 1;
+    right: 10px!important;
+    top: 10px!important;
+    height: 2.5rem;
+    width: 2.5rem;
+    background: rgba(193, 193, 193, 0.3) !important;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    padding: 0;
+    &:focus {
+      outline: 0;
+    }
+
+    span {
+      background-image: $close-image;
+      background-repeat: no-repeat;
+      background-size: contain;
+      color: transparent;
+      text-shadow: none;
+      background-position: center;
+    }
+    //light version for dark backgrounds
+    &.light span {
+      background-image: $close-image-light;
+    }
+    &.size-sm{
+      transform: scale(0.5);
+      right: 0.5rem;
+      top: 0.5rem;
+    }
+    &.close-pinned{
+      top: -19px;
+      right: -19px;
+    }
+  }
+
+}
+.modal[data-popup="true"]{
+  position: relative;
+  top:unset;
+  left: unset;
+  right: unset;
+  bottom:unset;
+  width: unset;
+  height: unset;
+  &.fade{
+    &.modal-top-left .modal-dialog,&.modal-top-right .modal-dialog,&.modal-bottom-right .modal-dialog,&.modal-bottom-left .modal-dialog, &.modal-bottom-center .modal-dialog{
+      position: fixed;
+    }
+    .modal-content{
+      box-shadow: 0 20px 60px -2px rgba(18, 21, 35, 0.19);
+    }
+  }
+
+}
+//Make body scrollable and hide the backdrop shadow to give widget effect
+.body-scrollable{
+  overflow: unset;
+  padding-right: unset!important;
+  .modal-backdrop{
+    display: none;
+  }
+
+}
+.modal-backdrop {
+  background: $overlay-color;
+}
+/*Bigger CTA Style Button*/
+.btn-cta {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 15px 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+/*Alert styles*/
+.event-type {
+  border: 3px solid #e0e6ed;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 0.2s;
+  transition-delay: 0.3s;
+}
+.event-type .event-indicator{
+  transition: all cubic-bezier(0,.89,.44,1) 0.2s;
+  transform: scale(0);
+  opacity: 0;
+  transition-delay: 0.5s;
+}
+.show .event-type .event-indicator{
+  transform: scale(1);
+  opacity: 1;
+}
+.show .event-type{
+  border-color: #e0e6ed;
+  background-color: #e0e6ed ;
+}
+.show .event-type.success{
+  border-color: #00CC99;
+  background-color: #00CC99 ;
+}
+
+.show .event-type.error{
+  border-color: #f2545b;
+  background-color: #f2545b ;
+}
+
+.show .event-type.warning{
+  border-color: #f7bc06;
+  background-color: #f7bc06 ;
+}
+
+.show .event-type.info{
+  border-color: #19b5fe;
+  background-color: #19b5fe ;
+}
+

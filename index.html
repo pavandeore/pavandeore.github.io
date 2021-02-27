@@ -19,6 +19,13 @@
 	<link rel="apple-touch-icon" href="images/2.png">
 
 
+    <!-- Lunar CSS -->
+    <link rel="stylesheet" href="assets/css/lunar.css">
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,600,700,800,900" rel="stylesheet">
 
 
 	<meta property="og:title" content="" />
@@ -703,7 +710,64 @@
 	<script src="js/main.js"></script>
 
 
+	
+		<!-- Modal -->
+		<div class="modal fade "   id="demoModal"  tabindex="-1" role="dialog"
+			 aria-labelledby="demoModal" aria-hidden="true">
+			<div class="modal-dialog  modal-dialog-centered  " role="document">
+				<div class="modal-content">
+				   <div class="modal-body py-sm-4 px-sm-5">
+	
+					   <button type="button" class="close " data-dismiss="modal"
+							   aria-label="Close">
+						   <span aria-hidden="true">&times;</span>
+					   </button>
+					   <div class="text-center pt-5">
+						   <img src="https://img.icons8.com/nolan/96/courses.png" />
+							<h3>Before you Leave</h3>
+						   <p class="text-muted">
+							   I am going to Launch 🚀 new Course on Frontend Development. Join the Waiting List for Special Discount 
+						   </p>
+	
+					   </div>
+					   <form method="post" name="google-sheet">
+						   <div class="form-group">
+							   <label for="exampleInputEmail1">Email address</label>
+							   <input type="email" required class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+						   </div>
+	
+						   <button type="submit" id="subscribe" name="submit" class="btn btn-cstm-dark btn-cta">Subscribe</button>
+					   </form>
+	
+				   </div>
+	
+				</div>
+			</div>
+		</div>
 
+	<div id="image"></div>
+	<script src="assets/js/lunar.js"></script>
+
+	<script src="assets/js/demo.js"></script>
+	<script>
+		const scriptURL = 'https://script.google.com/macros/s/AKfycbxgyOIpvMzeszS35hy1eY6eU-G6iujY5PyXQLQJSOGM4wsRchgr4QX56A/exec'
+		const form = document.forms['google-sheet']
+	  
+		form.addEventListener('submit', e => {
+		  e.preventDefault()
+		  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+			.then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+			.catch(error => console.error('Error!', error.message))
+		})
+	  </script>
+
+	<script>
+		$('#subscribe').click(function(){
+			setTimeout(function(){
+				$('#demoModal').modal('hide');
+			},3000)
+		})
+	</script>
 </body>
 
 </html>
