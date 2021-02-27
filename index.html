@@ -730,10 +730,10 @@
 						   </p>
 	
 					   </div>
-					   <form method="post" name="google-sheet">
+					   <form name="google-sheet">
 						   <div class="form-group">
 							   <label for="exampleInputEmail1">Email address</label>
-							   <input type="email" required class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+							   <input type="email" required class="form-control" name="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email" />
 						   </div>
 	
 						   <button type="submit" id="subscribe" name="submit" class="btn btn-cstm-dark btn-cta">Subscribe</button>
@@ -750,12 +750,22 @@
 
 	<script src="assets/js/demo.js"></script>
 	<script>
-		const scriptURL = 'https://script.google.com/macros/s/AKfycbxgyOIpvMzeszS35hy1eY6eU-G6iujY5PyXQLQJSOGM4wsRchgr4QX56A/exec'
+		const scriptURL = 'http://api.host20.uk/frontend-waitinglist/'
 		const form = document.forms['google-sheet']
-	  
+		
 		form.addEventListener('submit', e => {
-		  e.preventDefault()
-		  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+			let mail = document.getElementById('exampleInputEmail').value;
+		  	e.preventDefault()
+		  
+			async function postData(url = '', data = {}) {
+			const response = await fetch(url, {
+				method: 'POST', // *GET, POST, PUT, DELETE, etc.
+				body: JSON.stringify(data) // body data type must match "Content-Type" header
+			});
+			return response.json(); // parses JSON response into native JavaScript objects
+			}
+
+			postData('http://api.host20.uk/frontend-waitinglist/', { email: mail })
 			.then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
 			.catch(error => console.error('Error!', error.message))
 		})
