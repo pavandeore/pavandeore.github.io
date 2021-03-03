@@ -71,17 +71,17 @@ h1, h2, h3, h4, h5, h6, figure {
 
 ::-webkit-selection {
   color: #fff;
-  background: #FF9000;
+  background: #389ac7;
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #FF9000;
+  background: #389ac7;
 }
 
 ::selection {
   color: #fff;
-  background: #FF9000;
+  background: #389ac7;
 }
 
 #fh5co-header,
@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5, h6, figure {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 144, 0, 0.9);
+  background: rgba(0, 0, 0, 0.3);
 }
 #fh5co-header .display-t,
 .fh5co-cover .display-t {
@@ -257,7 +257,7 @@ h1, h2, h3, h4, h5, h6, figure {
   display: table-cell;
   vertical-align: middle;
   height: 100px;
-  color: #FF9000 !important;
+  color: #2ea3d1 !important;
 }
 #fh5co-features .feature-left .feature-copy {
   width: 100%;
