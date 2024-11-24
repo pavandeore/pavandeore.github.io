@@ -9,8 +9,7 @@ const nextConfig = {
     outputFileTracingIncludes: {
       '/articles/*': ['./src/app/articles/**/*.mdx'],
     },
-  },
-  output: "export",
+  }
 }
 
 const withMDX = nextMDX({

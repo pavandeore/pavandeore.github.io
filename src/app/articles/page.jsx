@@ -56,3 +56,5 @@ export default async function ArticlesIndex() {
     </SimpleLayout>
   )
 }
+
+export const dynamic = "auto";
