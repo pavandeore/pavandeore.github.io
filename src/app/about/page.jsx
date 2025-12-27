@@ -61,11 +61,11 @@ export default function About() {
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Professional Nerd
+            Engineering Farmer
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I have been into tech from last 4 years and worked on multiple complex products and in addition to that I have done 250+ hobby projects just to explore new technologies and create content / examples on things which are rare and unique to find on internet so other people can benefit from it.
+              I have been into tech from last 5 years and worked on multiple complex products and in addition to that I have done 250+ hobby projects just to explore new technologies and create content / examples on things which are rare and unique to find on internet so other people can benefit from it.
             </p>
             <p>
               Join me on this journey of learning and I will help you get better at what you do.

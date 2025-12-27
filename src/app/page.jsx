@@ -183,7 +183,7 @@ function Resume() {
     },
   ]
 
-  const resumeLink = 'https://drive.google.com/file/d/1eD4ZGtVaCEenAW-dvTxgEABWRfo6xDts/view'
+  const resumeLink = 'https://drive.google.com/file/d/1JHZXnEsCKIoC2FuHYBqAaCW5ozBj8yEz/view'
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">

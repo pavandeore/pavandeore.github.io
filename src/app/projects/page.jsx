@@ -16,27 +16,46 @@ const projects = [
     link: { href: 'https://drivepro.netlify.app/', label: 'drivepro' },
     // logo: logoPlanetaria,
   },
+
+  // {
+  //   name: 'PDF Content Extractor',
+  //   description:
+  //     'You can extract the content from the PDF file and save it in the text file.',
+  //   link: { href: 'https://pdf-content-parse.netlify.app/', label: 'pdf extractor' },
+  //   // logo: logoAnimaginary,
+  // },
+
+
+
+
+
+
+  {
+    name: 'ASK PDF AI',
+    description:
+      `Upload a PDF and ask questions about its content
+
+    Tech Stack
+    - NextJs
+    - TailwindCSS + shadcn UI
+    - OpenAI api
+    - Vercel`
+, 
+    link: { href: 'https://www.linkedin.com/posts/pawandeore_weekendproject-nextjs-activity-7385200816581918721-uA8s?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC_J0s8BOunkutPHxVcnUsr9ZuKrzP0Ho_E', label: 'ASK PDF AI' },
+    // logo: logoOpenShuttle,
+  },
+
+
+
   {
     name: 'YT Guy',
     description:
-      'YouTube Video and Team Management solution. SASS product for YouTubers.',
+      'YouTube Video and Team Management solution. SASS product for YouTubers with pure NodeJS, MySQL and google apis.',
     link: { href: 'https://www.linkedin.com/posts/pawan-deore-0bb60b1a4_harkirat-singh-hey-i-created-the-product-activity-7101454190333341696-sV4x', label: 'YT Guy' },
     // logo: logoCosmos,
   },
-  {
-    name: 'PDF Content Extractor',
-    description:
-      'You can extract the content from the PDF file and save it in the text file.',
-    link: { href: 'https://pdf-content-parse.netlify.app/', label: 'pdf extractor' },
-    // logo: logoAnimaginary,
-  },
-  {
-    name: 'Airbnb Clone',
-    description:
-      'This is the clone of Airbnb website, where you can book your stay.',
-    link: { href: 'https://www.linkedin.com/posts/pawan-deore-0bb60b1a4_nextjs-frontend-devcommunity-activity-7162074483229409280-sELa', label: 'airbnb clone' },
-    // logo: logoHelioStream,
-  },
+
+
   {
     name: 'ProjectPro Extension',
     description:
@@ -44,6 +63,32 @@ const projects = [
     link: { href: 'https://marketplace.visualstudio.com/items?itemName=ProjectPro.projectpro-helper', label: 'ProjectPro Extension' },
     // logo: logoOpenShuttle,
   },
+
+
+  {
+    name: 'Airbnb Clone',
+    description:
+      'This is the clone of Airbnb website, where you can book your stay. Built using NextJs, TailwindCSS',
+    link: { href: 'https://www.linkedin.com/posts/pawan-deore-0bb60b1a4_nextjs-frontend-devcommunity-activity-7162074483229409280-sELa', label: 'airbnb clone' },
+    // logo: logoHelioStream,
+  },
+
+
+  {
+    name: 'AI Podcast Generator',
+    description:
+      `
+      AI Podcast Generator Project
+
+Features
+ - Creates Podcast mp3 from Transcript (Downloadable). Built using - Python, OpenAI API, ElevenLabs, FastAPI, basic frontend html css, js
+      `
+, 
+    link: { href: 'https://www.linkedin.com/posts/pawandeore_llm-podcast-genai-activity-7356721273265106947-1mW7?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC_J0s8BOunkutPHxVcnUsr9ZuKrzP0Ho_E', label: 'AI Podcast Generator' },
+    // logo: logoOpenShuttle,
+  },
+
+
   // {
   //   name: 'Burnsnap',
   //   description:
