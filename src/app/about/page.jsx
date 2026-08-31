@@ -2,20 +2,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 
+import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
+
+const upworkUrl =
+  'https://www.upwork.com/freelancers/~0155cd3c28670522c7?viewMode=1'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
-        target='_blank'
+        target="_blank"
+        rel="noreferrer"
         href={href}
         className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
       >
@@ -26,21 +26,10 @@ function SocialLink({ className, href, children, icon: Icon }) {
   )
 }
 
-function MailIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fillRule="evenodd"
-        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
-      />
-    </svg>
-  )
-}
-
 export const metadata = {
   title: 'About',
   description:
-    'Professional Nerd.',
+    'About Pawan Deore — full-stack software engineer focused on AI products, SaaS applications, APIs, and modern web development.',
 }
 
 export default function About() {
@@ -51,47 +40,110 @@ export default function About() {
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <Image
               src={portraitImage}
-              width={200}
-              height={200}
-              alt="pawan profile"
-              // sizes="(min-width: 1024px) 32rem, 20rem"
-              className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+              width={320}
+              height={320}
+              alt="Pawan Deore"
+              className="aspect-square rotate-2 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+              priority
             />
           </div>
         </div>
+
         <div className="lg:order-first lg:row-span-2">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-teal-500">
+            About me
+          </p>
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Engineering Farmer
+            I build software from product idea to production.
           </h1>
-          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+
+          <div className="mt-6 space-y-7 text-base leading-7 text-zinc-600 dark:text-zinc-400">
             <p>
-              I have been into tech from last 5 years and worked on multiple complex products and in addition to that I have done 250+ hobby projects just to explore new technologies and create content / examples on things which are rare and unique to find on internet so other people can benefit from it.
+              I’m Pawan, a full-stack software engineer with 5+ years of
+              professional experience across frontend, backend, and AI-powered
+              products. My strongest work sits at the intersection of product
+              engineering, modern web development, and applied AI.
             </p>
             <p>
-              Join me on this journey of learning and I will help you get better at what you do.
+              I work with React, Next.js, TypeScript, Node.js, Python, FastAPI,
+              PostgreSQL, OpenAI APIs, RAG, embeddings, and the surrounding
+              infrastructure needed to ship reliable software.
+            </p>
+            <p>
+              Alongside professional product work, I’ve built 250+ technical
+              projects and experiments to explore new technologies, test ideas,
+              and understand how systems behave beyond the happy path.
+            </p>
+            <p>
+              I care about clean architecture, pragmatic decisions, clear
+              communication, and shipping useful software instead of
+              over-engineering for its own sake.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+              What I’m best at
+            </h2>
+            <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {[
+                'AI-powered SaaS products',
+                'React & Next.js applications',
+                'Python / FastAPI backends',
+                'Node.js APIs & integrations',
+                'RAG & document intelligence',
+                'PostgreSQL data applications',
+                'MVP product engineering',
+                'Existing product improvements',
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-xl border border-zinc-100 px-4 py-3 text-sm text-zinc-700 dark:border-zinc-700/40 dark:text-zinc-300"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+            <h2 className="font-semibold text-zinc-900 dark:text-zinc-100">
+              Outside of code
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+              I enjoy travelling, experimenting with new technology, building
+              side projects, and occasionally spending far too much time on
+              Clash of Clans.
             </p>
           </div>
         </div>
+
         <div className="lg:pl-20">
-          <ul role="list">
-            {/* <SocialLink href="#" icon={XIcon}>
-              Follow on X
-            </SocialLink>
-            <SocialLink href="#" icon={InstagramIcon} className="mt-4">
-              Follow on Instagram
-            </SocialLink> */}
-            <SocialLink href="https://github.com/pavandeore" icon={GitHubIcon} className="mt-4">
+          <Button
+            href={upworkUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="w-full"
+          >
+            Hire me on Upwork
+          </Button>
+
+          <ul
+            role="list"
+            className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+          >
+            <SocialLink
+              href="https://github.com/pavandeore"
+              icon={GitHubIcon}
+            >
               Follow on GitHub
             </SocialLink>
-            <SocialLink href="https://www.linkedin.com/in/pawan-deore-0bb60b1a4/" icon={LinkedInIcon} className="mt-4">
-              Follow on LinkedIn
-            </SocialLink>
             <SocialLink
-              href="mailto:pavandeore90@gmail.com"
-              icon={MailIcon}
-              className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+              href="https://www.linkedin.com/in/pawan-deore-0bb60b1a4/"
+              icon={LinkedInIcon}
+              className="mt-4"
             >
-              pavandeore90@gmail.com
+              Follow on LinkedIn
             </SocialLink>
           </ul>
         </div>
