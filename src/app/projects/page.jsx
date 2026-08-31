@@ -1,6 +1,5 @@
 import Link from 'next/link'
 
-import { Button } from '@/components/Button'
 import { SimpleLayout } from '@/components/SimpleLayout'
 
 const projects = [
@@ -160,14 +159,14 @@ export default function Projects() {
           I can help with AI features, SaaS products, full-stack development,
           backend systems, API integrations, and product MVPs.
         </p>
-        <Button
+        <Link
           href="https://www.upwork.com/freelancers/~0155cd3c28670522c7?viewMode=1"
           target="_blank"
           rel="noreferrer"
-          className="mt-6 bg-white text-zinc-900 hover:bg-zinc-100"
+          className="mt-6 inline-flex items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 transition hover:bg-zinc-100"
         >
           Discuss your project on Upwork
-        </Button>
+        </Link>
       </div>
     </SimpleLayout>
   )
