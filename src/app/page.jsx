@@ -1,48 +1,64 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
-// import logoAirbnb from '@/images/logos/airbnb.svg'
-// import logoFacebook from '@/images/logos/facebook.svg'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import logoProjectpro from '@/images/logos/projectpro-small-logo.jpg'
-// import logoStarbucks from '@/images/logos/starbucks.svg'
-import image1 from '@/images/photos/image-1.jpg'
-import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
 
-function MailIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path
-        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-      />
-      <path
-        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-        className="stroke-zinc-400 dark:stroke-zinc-500"
-      />
-    </svg>
-  )
-}
+const upworkUrl =
+  'https://www.upwork.com/freelancers/~0155cd3c28670522c7?viewMode=1'
+
+const linkedInUrl = 'https://www.linkedin.com/in/pawandeore/'
+const resumeUrl =
+  'https://drive.google.com/file/d/1oC0-1hjXlbjb9r563nU47EpqmgRPf9wk/view?usp=sharing'
+
+const featuredProjects = [
+  {
+    name: 'AI-to-SQL Analytics Platform',
+    description:
+      'Natural-language analytics that turns user questions into SQL, retrieves the right database context, and presents query results as useful visual insights.',
+    tech: ['Next.js', 'Python', 'PostgreSQL', 'OpenAI', 'RAG'],
+  },
+  {
+    name: 'SEC Filing Intelligence',
+    description:
+      'Document intelligence and structured extraction for complex SEC filings with changing layouts, large financial tables, and validation requirements.',
+    tech: ['Python', 'FastAPI', 'LLMs', 'Data Extraction'],
+  },
+  {
+    name: 'Real-Time Interview AI',
+    description:
+      'A real-time AI interviewing product combining live audio, conversational AI, and application workflows for an interactive interview experience.',
+    tech: ['React', 'WebRTC', 'OpenAI Realtime'],
+  },
+]
+
+const services = [
+  {
+    title: 'AI Product Development',
+    description:
+      'LLM applications, RAG systems, document intelligence, AI workflows, and OpenAI integrations built around real product requirements.',
+  },
+  {
+    title: 'Full-Stack SaaS Development',
+    description:
+      'Production web products using React, Next.js, Node.js, Python, FastAPI, PostgreSQL, authentication, billing, and third-party APIs.',
+  },
+  {
+    title: 'MVP & Product Engineering',
+    description:
+      'From idea or Figma to a working MVP with pragmatic architecture, clean implementation, deployment, and room to scale.',
+  },
+  {
+    title: 'Backend & API Development',
+    description:
+      'REST APIs, database design, integrations, background workflows, automation, and backend services for new or existing applications.',
+  },
+]
 
 function BriefcaseIcon(props) {
   return (
@@ -67,19 +83,6 @@ function BriefcaseIcon(props) {
   )
 }
 
-function ArrowDownIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 function Article({ article }) {
   return (
     <Card as="article">
@@ -97,187 +100,301 @@ function Article({ article }) {
 
 function SocialLink({ icon: Icon, ...props }) {
   return (
-    <Link target='_blank' className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+    <Link
+      target="_blank"
+      rel="noreferrer"
+      className="group -m-1 p-1"
+      {...props}
+    >
+      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-teal-500 dark:fill-zinc-400 dark:group-hover:fill-teal-400" />
     </Link>
   )
 }
 
-function Newsletter() {
-  return (
-    <form
-      action="/thank-you"
-      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
-    >
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <MailIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Stay up to date</span>
-      </h2>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        Get notified when I publish something new, and unsubscribe at any time.
-      </p>
-      <div className="mt-6 flex">
-        <input
-          type="email"
-          placeholder="Email address"
-          aria-label="Email address"
-          required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
-        />
-        <Button type="submit" className="ml-4 flex-none">
-          Join
-        </Button>
-      </div>
-    </form>
-  )
-}
-
-function Role({ role }) {
-  let startLabel =
-    typeof role.start === 'string' ? role.start : role.start.label
-  let startDate =
-    typeof role.start === 'string' ? role.start : role.start.dateTime
-
-  let endLabel = typeof role.end === 'string' ? role.end : role.end.label
-  let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
-
+function Role({ company, title, dates, logo, initials }) {
   return (
     <li className="flex gap-4">
-      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt=""  className='rounded-full' unoptimized />
+      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:bg-zinc-800 dark:ring-white/10">
+        {logo ? (
+          <Image src={logo} alt="" className="h-full w-full object-cover" unoptimized />
+        ) : (
+          <span className="text-xs font-bold tracking-wide text-teal-600 dark:text-teal-400">
+            {initials}
+          </span>
+        )}
       </div>
-      <dl className="flex flex-auto flex-wrap gap-x-2">
-        <dt className="sr-only">Company</dt>
-        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-          {role.company}
-        </dd>
-        <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-          {role.title}
-        </dd>
-        <dt className="sr-only">Date</dt>
-        <dd
-          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-          aria-label={`${startLabel} until ${endLabel}`}
-        >
-          <time dateTime={startDate}>{startLabel}</time>{' '}
-          <span aria-hidden="true">—</span>{' '}
-          <time dateTime={endDate}>{endLabel}</time>
-        </dd>
-      </dl>
+      <div className="min-w-0 flex-auto">
+        <div className="flex flex-wrap items-baseline gap-x-2">
+          <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
+            {company}
+          </p>
+          <p className="ml-auto text-xs text-zinc-400 dark:text-zinc-500">
+            {dates}
+          </p>
+        </div>
+        <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+          {title}
+        </p>
+      </div>
     </li>
   )
 }
 
-function Resume() {
-  let resume = [
-    {
-      company: 'ProjectPro',
-      title: 'Senior Frontend Engineer',
-      logo: logoProjectpro,
-      start: '2021',
-      end: {
-        label: 'Present',
-        dateTime: new Date().getFullYear().toString(),
-      },
-    },
-  ]
-
-  const resumeLink = 'https://drive.google.com/file/d/1JHZXnEsCKIoC2FuHYBqAaCW5ozBj8yEz/view'
-
+function Experience() {
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work</span>
+        <span className="ml-3">Professional experience</span>
       </h2>
-      <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
-        ))}
+
+      <ol className="mt-6 space-y-5">
+        <Role
+          company="HAI"
+          title="Product & AI Engineering"
+          dates="Jan 2026 — Present"
+          initials="HAI"
+        />
+        <Role
+          company="ProjectPro"
+          title="Senior Frontend Engineer"
+          dates="2021 — Dec 2025"
+          logo={logoProjectpro}
+        />
       </ol>
-      <Button href={resumeLink} variant="secondary" className="group mt-6 w-full">
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+
+      <Button
+        href={resumeUrl}
+        target="_blank"
+        rel="noreferrer"
+        variant="secondary"
+        className="mt-6 w-full"
+      >
+        View resume
       </Button>
     </div>
   )
 }
 
-function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-
+function SectionHeading({ eyebrow, title, description }) {
   return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
-              rotations[imageIndex % rotations.length],
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
+    <div className="max-w-2xl">
+      <p className="text-sm font-semibold uppercase tracking-wider text-teal-500">
+        {eyebrow}
+      </p>
+      <h2 className="mt-3 text-3xl font-bold tracking-tight text-zinc-800 sm:text-4xl dark:text-zinc-100">
+        {title}
+      </h2>
+      {description && (
+        <p className="mt-4 text-base leading-7 text-zinc-600 dark:text-zinc-400">
+          {description}
+        </p>
+      )}
     </div>
   )
 }
 
 export default async function Home() {
-  let articles = (await getAllArticles()).slice(0, 2)
+  const articles = (await getAllArticles()).slice(0, 2)
 
   return (
     <>
       <Container className="mt-9">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software Engineer, Traveller and <abbr title='Clash of Clans'>COC</abbr> Player.
-          </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Pawan. Software engineer based in India specializing in
-            building robust and scalable web applications. I have a passion for
-            building and learning new technologies.
+        <div className="max-w-4xl">
+          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-teal-500">
+            Full-Stack + AI Product Engineer
           </p>
-          <div className="mt-6 flex gap-6">
-            {/* <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
-            <SocialLink
-              href="#"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            /> */}
+
+          <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-zinc-800 sm:text-6xl dark:text-zinc-100">
+            I build production-ready AI and SaaS products.
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+            I’m Pawan, a software engineer with 5+ years of experience building
+            modern web applications, APIs, AI-powered products, dashboards, and
+            automation systems — from product idea to production.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button
+              href={upworkUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="px-5 py-2.5"
+            >
+              Hire me on Upwork
+            </Button>
+            <Button
+              href="/projects"
+              variant="secondary"
+              className="px-5 py-2.5"
+            >
+              View selected work
+            </Button>
+          </div>
+
+          <div className="mt-7 flex items-center gap-6">
             <SocialLink
               href="https://github.com/pavandeore"
-              aria-label="Follow on GitHub"
+              aria-label="GitHub"
               icon={GitHubIcon}
             />
             <SocialLink
-              href="https://www.linkedin.com/in/pawan-deore-0bb60b1a4/"
-              aria-label="Follow on LinkedIn"
+              href={linkedInUrl}
+              aria-label="LinkedIn"
               icon={LinkedInIcon}
             />
           </div>
+
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-y border-zinc-100 py-5 text-sm text-zinc-600 dark:border-zinc-700/40 dark:text-zinc-400">
+            <span>
+              <strong className="text-zinc-900 dark:text-zinc-100">5+ years</strong>{' '}
+              professional experience
+            </span>
+            <span>
+              <strong className="text-zinc-900 dark:text-zinc-100">250+</strong>{' '}
+              projects & experiments
+            </span>
+            <span>
+              <strong className="text-zinc-900 dark:text-zinc-100">AI + SaaS</strong>{' '}
+              end-to-end development
+            </span>
+          </div>
         </div>
       </Container>
-      <Photos />
-      <Container className="mt-24 md:mt-28">
+
+      <Container className="mt-24 sm:mt-32">
+        <SectionHeading
+          eyebrow="Selected work"
+          title="Complex products, not tutorial clones."
+          description="A few examples of the kind of engineering work I enjoy: AI systems, data-heavy products, real-time experiences, and full-stack SaaS."
+        />
+
+        <div className="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-3">
+          {featuredProjects.map((project) => (
+            <div
+              key={project.name}
+              className="rounded-2xl border border-zinc-100 p-6 transition hover:border-teal-500/30 dark:border-zinc-700/40"
+            >
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                {project.name}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                {project.description}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {project.tech.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <Link
+                href="/projects"
+                className="mt-6 inline-flex text-sm font-semibold text-teal-500 transition hover:text-teal-600 dark:hover:text-teal-400"
+              >
+                View project details →
+              </Link>
+            </div>
+          ))}
+        </div>
+      </Container>
+
+      <Container className="mt-24 sm:mt-32">
+        <SectionHeading
+          eyebrow="Services"
+          title="How I can help your product."
+          description="I work best with founders and product teams that need someone who can think beyond a single ticket and own the technical path from idea to production."
+        />
+
+        <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
+          {services.map((service) => (
+            <div key={service.title} className="border-l-2 border-teal-500 pl-5">
+              <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
+                {service.title}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Container>
+
+      <Container className="mt-24 sm:mt-32">
+        <SectionHeading
+          eyebrow="Core stack"
+          title="Modern full-stack engineering."
+        />
+
+        <div className="mt-8 flex flex-wrap gap-2">
+          {[
+            'React',
+            'Next.js',
+            'TypeScript',
+            'JavaScript',
+            'Python',
+            'FastAPI',
+            'Node.js',
+            'PostgreSQL',
+            'OpenAI',
+            'RAG',
+            'Embeddings',
+            'Docker',
+            'REST APIs',
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full border border-zinc-200 px-3 py-1.5 text-sm text-zinc-700 dark:border-zinc-700 dark:text-zinc-300"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </Container>
+
+      <Container className="mt-24 md:mt-32">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
-            {articles.map((article) => (
-              <Article key={article.slug} article={article} />
-            ))}
+          <div>
+            <p className="mb-8 text-sm font-semibold uppercase tracking-wider text-teal-500">
+              Technical writing
+            </p>
+            <div className="flex flex-col gap-12">
+              {articles.map((article) => (
+                <Article key={article.slug} article={article} />
+              ))}
+            </div>
           </div>
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
-            {/* <Newsletter /> */}
-            <Resume />
+          <div className="lg:pl-16 xl:pl-24">
+            <Experience />
           </div>
+        </div>
+      </Container>
+
+      <Container className="mt-24 sm:mt-32">
+        <div className="rounded-3xl bg-zinc-900 px-6 py-12 sm:px-10 dark:bg-zinc-800">
+          <p className="text-sm font-semibold uppercase tracking-wider text-teal-400">
+            Have a product to build?
+          </p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
+            Let’s turn the requirement into working software.
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-300">
+            Whether you’re launching an MVP, adding AI to an existing product,
+            or need an experienced engineer to own a feature end-to-end, send
+            me the project details on Upwork.
+          </p>
+          <Link
+            href={upworkUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-7 inline-flex items-center justify-center rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 transition hover:bg-zinc-100"
+          >
+            Start a project on Upwork
+          </Link>
         </div>
       </Container>
     </>
